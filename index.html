@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Olotuche Joshua — Builder & Founder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #111110;
+    --page: #F8F7F4;
+    --page-2: #F0EEE9;
+    --muted: #888480;
+    --border: #E2DED8;
+    --accent: #1A1A18;
+    --red: #C0362B;
+    --green: #2A6B4A;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--page);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 48px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(248,247,244,0.9);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-name {
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.2px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  /* ── HERO ── */
+  .hero {
+    padding: 140px 48px 100px;
+    max-width: 900px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hero-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--muted);
+  }
+
+  h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(40px, 6vw, 72px);
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+    color: var(--ink);
+    margin-bottom: 28px;
+    font-weight: 600;
+  }
+
+  h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--muted);
+  }
+
+  .hero-bio {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 40px;
+  }
+
+  .hero-bio strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  .hero-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--page);
+    padding: 12px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 3px;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-primary:hover { background: #333; transform: translateY(-1px); }
+
+  .btn-ghost {
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.01em;
+    transition: color 0.15s;
+    padding: 12px 0;
+    border-bottom: 1px solid transparent;
+  }
+
+  .btn-ghost:hover { color: var(--ink); border-bottom-color: var(--border); }
+
+  /* ── SECTION ── */
+  section {
+    padding: 80px 48px;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--muted);
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--page); }
+
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .project-item {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    align-items: start;
+    gap: 32px;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .project-item:first-child { border-top: 1px solid var(--border); }
+
+  .project-item:hover .pi-title { color: var(--red); }
+  .project-item:hover .pi-arrow { transform: translate(3px, -3px); color: var(--ink); }
+
+  .pi-year {
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 400;
+    padding-top: 4px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pi-body {}
+
+  .pi-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .pi-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  .pi-tag.active { background: rgba(42,107,74,0.08); border-color: rgba(42,107,74,0.25); color: var(--green); }
+  .pi-tag.civic { background: rgba(192,54,43,0.08); border-color: rgba(192,54,43,0.2); color: var(--red); }
+  .pi-tag.hardware { background: rgba(120,90,40,0.08); border-color: rgba(120,90,40,0.2); color: #8B6914; }
+
+  .pi-title {
+    font-family: 'Lora', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
+    line-height: 1.2;
+    transition: color 0.15s;
+  }
+
+  .pi-desc {
+    font-size: 14px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.65;
+    max-width: 520px;
+  }
+
+  .pi-meta {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 12px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .pi-meta span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .pi-arrow {
+    font-size: 18px;
+    color: var(--muted);
+    transition: all 0.2s;
+    padding-top: 4px;
+    flex-shrink: 0;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--page-2); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    max-width: 860px;
+  }
+
+  .about-text p {
+    font-size: 15px;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.75;
+    margin-bottom: 16px;
+  }
+
+  .about-text p strong { color: var(--ink); font-weight: 500; }
+
+  .about-text p:last-child { margin-bottom: 0; }
+
+  .skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .skill-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .skill-row:first-child { border-top: 1px solid var(--border); }
+
+  .skill-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .skill-level {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+
+  .skill-bar {
+    width: 80px;
+    height: 2px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-left: 16px;
+  }
+
+  .skill-fill {
+    height: 100%;
+    background: var(--ink);
+    border-radius: 2px;
+    transform-origin: left;
+    animation: growBar 1s ease both;
+    animation-delay: 0.3s;
+  }
+
+  @keyframes growBar {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--ink); }
+
+  #contact .section-label { color: rgba(255,255,255,0.25); }
+  #contact .section-label::before { background: rgba(255,255,255,0.25); }
+
+  .contact-title {
+    font-family: 'Lora', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    color: #F8F7F4;
+    letter-spacing: -0.8px;
+    margin-bottom: 16px;
+    line-height: 1.1;
+    font-weight: 600;
+  }
+
+  .contact-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 300;
+    max-width: 400px;
+    line-height: 1.65;
+    margin-bottom: 40px;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 3px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    transition: all 0.15s;
+    letter-spacing: 0.02em;
+  }
+
+  .contact-link:hover {
+    border-color: rgba(255,255,255,0.4);
+    color: white;
+    background: rgba(255,255,255,0.06);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 24px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: rgba(255,255,255,0.2);
+  }
+
+  .footer-tag {
+    font-size: 12px;
+    color: rgba(255,255,255,0.2);
+    font-style: italic;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 110px 20px 64px; }
+    section { padding: 56px 20px; }
+    .project-item { grid-template-columns: 1fr; gap: 12px; }
+    .pi-year { display: none; }
+    .pi-arrow { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-name">Olotuche Joshua</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">Builder & Founder · Lagos, Nigeria</div>
+  <h1>I build things<br>that <em>actually</em><br>matter.</h1>
+  <p class="hero-bio">
+    Engineering student at <strong>LASU</strong>. Founder of <strong>Unify</strong> — a platform for Nigerian engineering students. I care more about solving real problems than writing elegant code.
+  </p>
+  <div class="hero-links">
+    <a href="#projects" class="btn-primary">
+      See my work
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <a href="#contact" class="btn-ghost">Get in touch →</a>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Selected Work</div>
+
+  <div class="projects-list">
+
+    <!-- UNIFY -->
+    <div class="project-item" onclick="window.open('https://unifyhub.netlify.app', '_blank')">
+      <div class="pi-year">2025–<br>Present</div>
+      <div class="pi-body">
+        <div class="pi-tags">
+          <span class="pi-tag active">Live</span>
+          <span class="pi-tag">EdTech</span>
+          <span class="pi-tag">Founder</span>
+        </div>
+        <div class="pi-title">Unify</div>
+        <p class="pi-desc">
+          A student academic and career platform for Nigerian engineering students. Unify Learn delivers structured course content libraries across six departments — built as a resource layer that sits alongside university, not against it.
+        </p>
+        <div class="pi-meta">
+          <span>HTML · CSS · JavaScript · Firebase</span>
+          <span>·</span>
+          <span>LASU Faculty of Engineering · 200L–500L</span>
+        </div>
+      </div>
+      <div class="pi-arrow">↗</div>
+    </div>
+
+    <!-- IJERI -->
+    <div class="project-item" onclick="window.open('https://github.com/DIBBLS/ijeri', '_blank')">
+      <div class="pi-year">2026</div>
+      <div class="pi-body">
+        <div class="pi-tags">
+          <span class="pi-tag civic">Civic Tech</span>
+          <span class="pi-tag">In Development</span>
+          <span class="pi-tag">Open Source</span>
+        </div>
+        <div class="pi-title">Ijeri</div>
+        <p class="pi-desc">
+          An anonymous civic reporting platform for Nigerians to document corruption, police brutality, and institutional abuse — with evidence. No account required. IP never stored. EXIF data stripped on upload.
+        </p>
+        <div class="pi-meta">
+          <span>HTML · CSS · JavaScript</span>
+          <span>·</span>
+          <span>Evidence-first · Zero identity collection</span>
+        </div>
+      </div>
+      <div class="pi-arrow">↗</div>
+    </div>
+
+    <!-- THERMAL COOKER -->
+    <div class="project-item">
+      <div class="pi-year">2026</div>
+      <div class="pi-body">
+        <div class="pi-tags">
+          <span class="pi-tag hardware">Hardware</span>
+          <span class="pi-tag">Energy</span>
+          <span class="pi-tag">Concept</span>
+        </div>
+        <div class="pi-title">Thermal Storage Electric Cooker</div>
+        <p class="pi-desc">
+          A hardware concept for Nigerian households — a cooker that stores thermal energy during off-peak electricity hours and releases it during outages. Designed around the everyday reality of irregular power supply.
+        </p>
+        <div class="pi-meta">
+          <span>Hardware Design · Energy Systems · Arduino</span>
+          <span>·</span>
+          <span>Concept stage</span>
+        </div>
+      </div>
+      <div class="pi-arrow" style="color: var(--border)">—</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm a <strong>Computer & Electronics Engineering student at LASU</strong> and the founder of Unify. I attend a computer startup school alongside my degree.
+      </p>
+      <p>
+        I think of myself as a <strong>product person who can build</strong> — not the other way around. The most important skill isn't writing code. It's knowing what to build, for whom, and why it matters.
+      </p>
+      <p>
+        Most of what I build is for people around me — students who are stuck, citizens who have no safe channel to speak, households that deal with power cuts every day. The problem comes first. The tools follow.
+      </p>
+    </div>
+    <div>
+      <div class="skills-list">
+        <div class="skill-row">
+          <span class="skill-name">Product Thinking</span>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span class="skill-level">Strong</span>
+            <div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div>
+          </div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">HTML / CSS / JS</span>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span class="skill-level">Solid</span>
+            <div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div>
+          </div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Firebase / Firestore</span>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span class="skill-level">Solid</span>
+            <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
+          </div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">User Research</span>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span class="skill-level">Strong</span>
+            <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+          </div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Brand & Content Strategy</span>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span class="skill-level">Developing</span>
+            <div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div>
+          </div>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Hardware Concepts</span>
+          <div style="display:flex;align-items:center;gap:12px">
+            <span class="skill-level">Exploring</span>
+            <div class="skill-bar"><div class="skill-fill" style="width:45%"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Contact</div>
+  <h2 class="contact-title">Let's talk.</h2>
+  <p class="contact-sub">If you're building something real, want to collaborate, or just want to connect — reach out.</p>
+  <div class="contact-links">
+    <a href="mailto:olotuchjosh@gmail.com" class="contact-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      olotuchjosh@gmail.com
+    </a>
+    <a href="https://github.com/DIBBLS" target="_blank" class="contact-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      GitHub · DIBBLS
+    </a>
+    <a href="https://www.linkedin.com/in/joshua-olotuche-350423287/" target="_blank" class="contact-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn · Joshua Olotuche
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-copy">© 2025 Olotuche Joshua</span>
+  <span class="footer-tag">"The problem comes first."</span>
+</footer>
+
+</body>
+</html>
