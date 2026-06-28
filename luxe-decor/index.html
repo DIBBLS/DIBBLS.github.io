@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luxe Décor — Premium Interior Decoration</title>
+  <meta name="description" content="Transform your space with premium curated décor — wall art, sculptures, clocks, lighting, mirrors and more. Visit our showroom today.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:       #C4993A;
+      --gold-light: #D4AF6A;
+      --gold-pale:  #F2E6C4;
+      --gold-dark:  #8B6914;
+      --dark:       #171512;
+      --dark-2:     #1E1B17;
+      --dark-3:     #28241E;
+      --cream:      #FAFAF6;
+      --stone:      #EDE9DF;
+      --text:       #1C1A16;
+      --muted:      #7A756E;
+      --border:     #E0D9CE;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* ─── UTILS ─── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+
+    .section-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 600;
+      line-height: 1.12;
+      color: var(--text);
+    }
+
+    .section-title.on-dark { color: var(--cream); }
+
+    /* ─── NAV ─── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 22px 0;
+      transition: background 0.35s, padding 0.35s, box-shadow 0.35s;
+    }
+
+    #nav.scrolled {
+      background: rgba(23, 21, 18, 0.96);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 14px 0;
+      box-shadow: 0 1px 0 rgba(196, 153, 58, 0.18);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--cream);
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      line-height: 1;
+    }
+    .nav-logo span { color: var(--gold); }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(250, 248, 243, 0.72);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold-light); }
+
+    .nav-cta {
+      background: var(--gold);
+      color: var(--dark) !important;
+      padding: 10px 24px;
+      border-radius: 2px;
+      font-weight: 600 !important;
+      font-size: 12.5px !important;
+      letter-spacing: 0.08em !important;
+      text-transform: uppercase;
+      transition: background 0.2s !important;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--gold-light) !important; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 6px;
+      background: none;
+      border: none;
+      z-index: 10;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--cream);
+      transition: all 0.3s;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 860px) {
+      .hamburger { display: flex; }
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: calc(100% + 22px);
+        left: -28px;
+        right: -28px;
+        background: rgba(23,21,18,0.98);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 16px 28px 28px;
+        border-top: 1px solid rgba(196,153,58,0.2);
+      }
+      .nav-menu.open { display: flex; }
+      .nav-links { flex-direction: column; gap: 4px; width: 100%; }
+      .nav-links a { display: block; padding: 12px 0; font-size: 15px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .nav-cta { margin-top: 16px; width: 100%; text-align: center; padding: 14px; }
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      background: var(--dark);
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('img/store-overview.jpg');
+      background-size: cover;
+      background-position: center 30%;
+      transform: scale(1.04);
+      animation: heroZoom 12s ease-out forwards;
+    }
+
+    @keyframes heroZoom {
+      from { transform: scale(1.04); }
+      to   { transform: scale(1); }
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(23,21,18,0.90) 0%,
+        rgba(23,21,18,0.72) 50%,
+        rgba(23,21,18,0.86) 100%
+      );
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 15%;
+      right: 8%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(196,153,58,0.10) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 30px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 6.5vw, 5.2rem);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.06;
+      margin-bottom: 26px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      font-weight: 300;
+      color: rgba(250,248,243,0.65);
+      line-height: 1.78;
+      max-width: 480px;
+      margin-bottom: 48px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      padding: 16px 32px;
+      transition: all 0.25s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--dark);
+    }
+    .btn-gold:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(196,153,58,0.30);
+    }
+
+    .btn-ghost {
+      border: 1px solid rgba(250,248,243,0.28);
+      color: var(--cream);
+    }
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      background: rgba(196,153,58,0.08);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 44px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .scroll-indicator span {
+      font-size: 9.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(250,248,243,0.35);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 52px;
+      background: linear-gradient(to bottom, transparent, var(--gold));
+      animation: pulse 2.2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.35; transform: scaleY(0.75); }
+      50%       { opacity: 1;    transform: scaleY(1); }
+    }
+
+    /* ─── STATS STRIP ─── */
+    .stats-strip {
+      background: var(--dark-2);
+      border-top: 1px solid rgba(196,153,58,0.15);
+      border-bottom: 1px solid rgba(196,153,58,0.15);
+      padding: 30px 0;
+    }
+
+    .stats-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .stat {
+      text-align: center;
+      padding: 4px 20px;
+      position: relative;
+    }
+    .stat:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0; top: 15%; height: 70%;
+      width: 1px;
+      background: rgba(196,153,58,0.18);
+    }
+
+    .stat-num {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.3rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+    .stat-lbl {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(250,248,243,0.42);
+    }
+
+    /* ─── ABOUT ─── */
+    #about { padding: 130px 0; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 88px;
+      align-items: center;
+    }
+
+    .about-text .section-title { margin-bottom: 26px; }
+
+    .about-lead {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.78;
+      margin-bottom: 18px;
+    }
+
+    .about-body {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 38px;
+    }
+
+    .about-sig {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .about-sig-line {
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+    .about-sig-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    .about-visual { position: relative; }
+
+    .about-img-wrap {
+      border-radius: 4px;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+    .about-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+    }
+
+    .about-badge {
+      position: absolute;
+      bottom: -28px;
+      left: -28px;
+      background: var(--gold);
+      color: var(--dark);
+      padding: 28px 32px;
+      border-radius: 4px;
+      text-align: center;
+      box-shadow: 0 12px 40px rgba(196,153,58,0.35);
+    }
+    .badge-num {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .badge-lbl {
+      display: block;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    /* ─── COLLECTIONS ─── */
+    #collections {
+      padding: 110px 0;
+      background: var(--stone);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .section-header .section-title { margin-top: 0; }
+    .section-header p {
+      margin-top: 18px;
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .collections-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .coll-card {
+      background: var(--cream);
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: transform 0.32s cubic-bezier(.2,.8,.3,1), box-shadow 0.32s;
+    }
+    .coll-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.11);
+    }
+
+    .coll-img {
+      aspect-ratio: 3/2;
+      overflow: hidden;
+    }
+    .coll-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.55s ease;
+    }
+    .coll-card:hover .coll-img img { transform: scale(1.07); }
+
+    .coll-body { padding: 26px; }
+
+    .coll-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 9px;
+    }
+    .coll-desc {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .coll-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 18px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      transition: gap 0.2s;
+    }
+    .coll-card:hover .coll-link { gap: 12px; }
+
+    /* ─── GALLERY ─── */
+    #gallery {
+      padding: 110px 0;
+      background: var(--dark);
+    }
+
+    #gallery .section-header .section-label,
+    #gallery .section-header p { color: rgba(250,248,243,0.5); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 260px;
+      gap: 10px;
+    }
+
+    .g-item {
+      overflow: hidden;
+      border-radius: 3px;
+      position: relative;
+      cursor: zoom-in;
+    }
+    .g-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+    .g-item:nth-child(6) { grid-column: span 2; }
+    .g-item:nth-child(10) { grid-column: span 2; }
+
+    .g-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(.2,.8,.3,1);
+      display: block;
+    }
+    .g-item:hover img { transform: scale(1.08); }
+
+    .g-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(23,21,18,0.72) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px;
+    }
+    .g-item:hover .g-overlay { opacity: 1; }
+    .g-label {
+      color: var(--cream);
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(10,9,8,0.95);
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img {
+      max-width: 92vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 3px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+    }
+    #lb-close {
+      position: absolute;
+      top: 24px; right: 28px;
+      font-size: 28px;
+      color: rgba(250,248,243,0.6);
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    #lb-close:hover { color: var(--gold); }
+
+    /* ─── WHY US ─── */
+    #why { padding: 130px 0; }
+
+    #why .section-header { margin-bottom: 70px; }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 48px;
+    }
+
+    .why-card { text-align: center; }
+
+    .why-icon {
+      width: 68px;
+      height: 68px;
+      border: 1.5px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 22px;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .why-card:hover .why-icon {
+      background: var(--gold);
+      box-shadow: 0 8px 28px rgba(196,153,58,0.3);
+    }
+    .why-icon svg { transition: stroke 0.3s; }
+    .why-card:hover .why-icon svg { stroke: var(--dark); }
+
+    .why-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 17.5px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .why-text {
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.72;
+    }
+
+    /* ─── TESTIMONIAL ─── */
+    .testimonial {
+      background: var(--dark-2);
+      padding: 88px 0;
+      border-top: 1px solid rgba(196,153,58,0.12);
+      border-bottom: 1px solid rgba(196,153,58,0.12);
+    }
+
+    .testimonial-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 100px;
+      line-height: 0.4;
+      color: var(--gold);
+      opacity: 0.3;
+      display: block;
+      margin-bottom: 28px;
+    }
+    .testimonial-body {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+      color: var(--cream);
+      line-height: 1.65;
+      margin-bottom: 30px;
+    }
+    .testimonial-author {
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      padding: 130px 0;
+      background: var(--stone);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 88px;
+      align-items: center;
+    }
+
+    .contact-text .section-title { margin-bottom: 22px; }
+    .contact-text p {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.78;
+      margin-bottom: 38px;
+    }
+
+    .contact-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #25D366;
+      color: #fff;
+      padding: 16px 28px;
+      border-radius: 2px;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-whatsapp:hover {
+      background: #1fbb59;
+      transform: translateY(-2px);
+    }
+
+    .contact-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 40px;
+    }
+    .contact-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 21px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 30px;
+    }
+
+    .info-row {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .info-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .info-row:first-of-type { padding-top: 0; }
+
+    .info-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--gold-pale);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--gold-dark);
+    }
+    .info-lbl {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    .info-val {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark);
+      padding: 64px 0 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 64px;
+      margin-bottom: 56px;
+    }
+
+    .footer-logo {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--cream);
+      text-decoration: none;
+      margin-bottom: 16px;
+    }
+    .footer-logo span { color: var(--gold); }
+
+    .footer-tagline {
+      font-size: 13.5px;
+      color: rgba(250,248,243,0.38);
+      line-height: 1.72;
+      max-width: 280px;
+    }
+
+    .footer-col-title {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .footer-links a {
+      font-size: 13.5px;
+      color: rgba(250,248,243,0.45);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold-light); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(250,248,243,0.07);
+      padding-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-copy { font-size: 12.5px; color: rgba(250,248,243,0.28); }
+
+    .footer-socials { display: flex; gap: 10px; }
+    .social-btn {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(250,248,243,0.14);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(250,248,243,0.42);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .social-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ─── ANIMATIONS ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal.d1 { transition-delay: 0.1s; }
+    .reveal.d2 { transition-delay: 0.2s; }
+    .reveal.d3 { transition-delay: 0.3s; }
+    .reveal.d4 { transition-delay: 0.4s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      .about-grid    { grid-template-columns: 1fr; gap: 56px; }
+      .about-badge   { position: static; display: inline-block; margin-top: 24px; }
+      .about-visual  { max-width: 500px; }
+      .contact-grid  { grid-template-columns: 1fr; gap: 52px; }
+    }
+
+    @media (max-width: 760px) {
+      .stats-inner        { grid-template-columns: repeat(2, 1fr); }
+      .stat:nth-child(2)::after { display: none; }
+
+      .collections-grid   { grid-template-columns: 1fr; }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 200px;
+      }
+      .g-item:nth-child(1),
+      .g-item:nth-child(6),
+      .g-item:nth-child(10) { grid-column: span 1; grid-row: span 1; }
+
+      .why-grid  { grid-template-columns: repeat(2, 1fr); gap: 36px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+    }
+
+    @media (max-width: 500px) {
+      .hero-title { font-size: 2.6rem; }
+      .collections-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .contact-btns .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">Luxe<span>Décor</span></a>
+
+      <div class="nav-menu" id="navMenu">
+        <ul class="nav-links">
+          <li><a href="#about" onclick="closeMenu()">About</a></li>
+          <li><a href="#collections" onclick="closeMenu()">Collections</a></li>
+          <li><a href="#gallery" onclick="closeMenu()">Gallery</a></li>
+          <li><a href="#why" onclick="closeMenu()">Why Us</a></li>
+        </ul>
+        <a href="#contact" class="nav-cta" onclick="closeMenu()">Visit Us</a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow">Interior Decoration & Design</div>
+      <h1 class="hero-title">
+        Where Every<br><em>Space</em> Tells<br>a Story
+      </h1>
+      <p class="hero-sub">
+        Premium curated décor for homes, offices, and beyond —
+        from statement wall art to sculptural masterpieces.
+        We bring spaces to life.
+      </p>
+      <div class="hero-actions">
+        <a href="#collections" class="btn btn-gold">
+          Explore Collections
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="#gallery" class="btn btn-ghost">View Gallery</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ─── STATS STRIP ─── -->
+<div class="stats-strip">
+  <div class="container">
+    <div class="stats-inner">
+      <div class="stat">
+        <span class="stat-num">500+</span>
+        <span class="stat-lbl">Products in Store</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">8+</span>
+        <span class="stat-lbl">Collections</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">200+</span>
+        <span class="stat-lbl">Happy Clients</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">100%</span>
+        <span class="stat-lbl">Quality Assured</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── ABOUT ─── -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+
+      <div class="about-text">
+        <span class="section-label">Our Story</span>
+        <h2 class="section-title">Crafting Beautiful<br>Spaces, One Piece<br>at a Time</h2>
+        <p class="about-lead">
+          We believe your space should be a reflection of who you are —
+          sophisticated, unique, and full of character.
+        </p>
+        <p class="about-body">
+          From vibrant wall art and statement clocks to elegant sculptures and lush
+          botanicals, every piece in our collection is hand-selected to help you
+          transform any room into a space you love. Whether you're decorating a
+          home, an office, or a special event — we have exactly what you need.
+        </p>
+        <div class="about-sig">
+          <div class="about-sig-line"></div>
+          <span class="about-sig-text">Curated with care, designed for your space.</span>
+        </div>
+      </div>
+
+      <div class="about-visual">
+        <div class="about-img-wrap">
+          <img src="img/plants.jpg" alt="Our beautifully curated store">
+        </div>
+        <div class="about-badge">
+          <span class="badge-num">★★★★★</span>
+          <span class="badge-lbl">Premium Quality</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── COLLECTIONS ─── -->
+<section id="collections">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Shop by Category</span>
+      <h2 class="section-title">Our Collections</h2>
+      <p>Hundreds of handpicked pieces across every category — find the perfect fit for your space.</p>
+    </div>
+
+    <div class="collections-grid">
+
+      <div class="coll-card reveal">
+        <div class="coll-img">
+          <img src="img/paintings.jpg" alt="Wall Art & Paintings" loading="lazy">
+        </div>
+        <div class="coll-body">
+          <h3 class="coll-title">Wall Art & Paintings</h3>
+          <p class="coll-desc">Vibrant canvas prints, framed art, and textured wall pieces — from abstract to figurative, every wall deserves a story.</p>
+          <span class="coll-link">Explore ›</span>
+        </div>
+      </div>
+
+      <div class="coll-card reveal d1">
+        <div class="coll-img">
+          <img src="img/clocks.jpg" alt="Clocks & Timepieces" loading="lazy">
+        </div>
+        <div class="coll-body">
+          <h3 class="coll-title">Clocks & Timepieces</h3>
+          <p class="coll-desc">Wall clocks and table clocks in classic, modern, and steampunk-gear styles. Functional art for every room.</p>
+          <span class="coll-link">Explore ›</span>
+        </div>
+      </div>
+
+      <div class="coll-card reveal d2">
+        <div class="coll-img">
+          <img src="img/lamp.jpg" alt="Lighting & Lamps" loading="lazy">
+        </div>
+        <div class="coll-body">
+          <h3 class="coll-title">Lighting & Lamps</h3>
+          <p class="coll-desc">Ornate table lamps and decorative lighting pieces to set the perfect ambiance in any room.</p>
+          <span class="coll-link">Explore ›</span>
+        </div>
+      </div>
+
+      <div class="coll-card reveal">
+        <div class="coll-img">
+          <img src="img/plants.jpg" alt="Botanicals & Florals" loading="lazy">
+        </div>
+        <div class="coll-body">
+          <h3 class="coll-title">Botanicals & Florals</h3>
+          <p class="coll-desc">Lifelike artificial plants and stunning floral arrangements that stay beautiful all year — zero maintenance.</p>
+          <span class="coll-link">Explore ›</span>
+        </div>
+      </div>
+
+      <div class="coll-card reveal d1">
+        <div class="coll-img">
+          <img src="img/figurines.jpg" alt="Sculptures & Figurines" loading="lazy">
+        </div>
+        <div class="coll-body">
+          <h3 class="coll-title">Sculptures & Figurines</h3>
+          <p class="coll-desc">Gold and metallic sculptures — animals, human forms, and abstract art pieces for shelves, tables, and mantels.</p>
+          <span class="coll-link">Explore ›</span>
+        </div>
+      </div>
+
+      <div class="coll-card reveal d2">
+        <div class="coll-img">
+          <img src="img/ceramics.jpg" alt="Ceramics & Vases" loading="lazy">
+        </div>
+        <div class="coll-body">
+          <h3 class="coll-title">Ceramics & Vases</h3>
+          <p class="coll-desc">Porcelain sets, decorative vases, and gold-accent ceramic pieces that add elegance to any surface.</p>
+          <span class="coll-link">Explore ›</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── GALLERY ─── -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">The Collection</span>
+      <h2 class="section-title on-dark">Inside Our Store</h2>
+      <p>A glimpse into the world of décor we've curated for you. Click any image to view it closer.</p>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="g-item" data-src="img/store-overview.jpg">
+        <img src="img/store-overview.jpg" alt="Store — Wall Art Collection" loading="lazy">
+        <div class="g-overlay"><span class="g-label">Wall Art Collection</span></div>
+      </div>
+      <div class="g-item" data-src="img/figurines.jpg">
+        <img src="img/figurines.jpg" alt="Gold Figurines" loading="lazy">
+        <div class="g-overlay"><span class="g-label">Sculptures</span></div>
+      </div>
+      <div class="g-item" data-src="img/paintings.jpg">
+        <img src="img/paintings.jpg" alt="Framed Paintings" loading="lazy">
+        <div class="g-overlay"><span class="g-label">Framed Art</span></div>
+      </div>
+      <div class="g-item" data-src="img/clocks.jpg">
+        <img src="img/clocks.jpg" alt="Decorative Clocks" loading="lazy">
+        <div class="g-overlay"><span class="g-label">Clocks</span></div>
+      </div>
+      <div class="g-item" data-src="img/accessories.jpg">
+        <img src="img/accessories.jpg" alt="Home Accessories" loading="lazy">
+        <div class="g-overlay"><span class="g-label">Home Accessories</span></div>
+      </div>
+      <div class="g-item" data-src="img/plants.jpg">
+        <img src="img/plants.jpg" alt="Botanicals & Florals" loading="lazy">
+        <div class="g-overlay"><span class="g-label">Botanicals & Florals</span></div>
+      </div>
+      <div class="g-item" data-src="img/lamp.jpg">
+        <img src="img/lamp.jpg" alt="Decorative Lamp" loading="lazy">
+        <div class="g-overlay"><span class="g-label">Lighting</span></div>
+      </div>
+      <div class="g-item" data-src="img/ceramics.jpg">
+        <img src="img/ceramics.jpg" alt="Ceramics" loading="lazy">
+        <div class="g-overlay"><span class="g-label">Ceramics</span></div>
+      </div>
+      <div class="g-item" data-src="img/wall-art-globe.jpg">
+        <img src="img/wall-art-globe.jpg" alt="3D Wall Art" loading="lazy">
+        <div class="g-overlay"><span class="g-label">3D Wall Art</span></div>
+      </div>
+      <div class="g-item" data-src="img/glassware-mirrors.jpg">
+        <img src="img/glassware-mirrors.jpg" alt="Glassware & Mirrors" loading="lazy">
+        <div class="g-overlay"><span class="g-label">Mirrors & Glassware</span></div>
+      </div>
+      <div class="g-item" data-src="img/store-glass.jpg">
+        <img src="img/store-glass.jpg" alt="Store Interior" loading="lazy">
+        <div class="g-overlay"><span class="g-label">Our Store</span></div>
+      </div>
+      <div class="g-item" data-src="img/store-plants.jpg">
+        <img src="img/store-plants.jpg" alt="Store Space" loading="lazy">
+        <div class="g-overlay"><span class="g-label">Our Space</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- lightbox -->
+<div id="lightbox">
+  <div id="lb-close" aria-label="Close">✕</div>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<!-- ─── WHY US ─── -->
+<section id="why">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Why Choose Us</span>
+      <h2 class="section-title">The Luxe Décor Difference</h2>
+    </div>
+
+    <div class="why-grid">
+
+      <div class="why-card reveal">
+        <div class="why-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01L12 2z"/>
+          </svg>
+        </div>
+        <h3 class="why-title">Curated Selection</h3>
+        <p class="why-text">Every item is personally selected for quality, style, and character. Nothing ordinary makes it to our shelves.</p>
+      </div>
+
+      <div class="why-card reveal d1">
+        <div class="why-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3 class="why-title">Premium Quality</h3>
+        <p class="why-text">We stock only premium pieces built to last and impress — every purchase is an investment in your space.</p>
+      </div>
+
+      <div class="why-card reveal d2">
+        <div class="why-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
+          </svg>
+        </div>
+        <h3 class="why-title">Affordable Luxury</h3>
+        <p class="why-text">Beautiful interiors shouldn't break the bank. We bring you stunning pieces at surprisingly fair prices.</p>
+      </div>
+
+      <div class="why-card reveal d3">
+        <div class="why-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+        </div>
+        <h3 class="why-title">Expert Guidance</h3>
+        <p class="why-text">Not sure what fits your space? Our team helps you choose pieces that match your vision and personality.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIAL ─── -->
+<div class="testimonial">
+  <div class="container">
+    <div class="testimonial-inner">
+      <span class="quote-mark">"</span>
+      <p class="testimonial-body">
+        I walked in not knowing what I wanted, and walked out with pieces that
+        completely transformed my living room. The quality is incredible and the
+        team was so helpful. I'll be coming back for more.
+      </p>
+      <span class="testimonial-author">— A Satisfied Customer</span>
+    </div>
+  </div>
+</div>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+
+      <div class="contact-text">
+        <span class="section-label">Get In Touch</span>
+        <h2 class="section-title">Visit Our<br>Showroom Today</h2>
+        <p>
+          Come see our full collection in person. Browse hundreds of carefully
+          curated pieces, get expert advice, and find the perfect décor for
+          your space. We'd love to welcome you.
+        </p>
+        <div class="contact-btns">
+          <a href="https://wa.me/234XXXXXXXXXX" class="btn-whatsapp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Chat on WhatsApp
+          </a>
+          <a href="tel:+234XXXXXXXXXX" class="btn btn-gold">
+            Call Us
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <h3 class="contact-card-title">Store Information</h3>
+
+        <div class="info-row">
+          <div class="info-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="info-lbl">Location</div>
+            <div class="info-val">[Store Address Here]<br>Nigeria</div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92v2z"/></svg>
+          </div>
+          <div>
+            <div class="info-lbl">Phone / WhatsApp</div>
+            <div class="info-val">[Phone Number Here]</div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div>
+            <div class="info-lbl">Opening Hours</div>
+            <div class="info-val">Monday – Saturday: 9am – 7pm<br>Sunday: 12pm – 5pm</div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="info-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8zM5.5 17h.01M18.5 17h.01"/></svg>
+          </div>
+          <div>
+            <div class="info-lbl">Delivery</div>
+            <div class="info-val">Same-day local delivery available</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+
+      <div>
+        <a href="#hero" class="footer-logo">Luxe<span>Décor</span></a>
+        <p class="footer-tagline">
+          Premium interior decoration pieces — curated to transform your space into something truly extraordinary.
+        </p>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#collections">Collections</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">Collections</div>
+        <ul class="footer-links">
+          <li><a href="#collections">Wall Art & Paintings</a></li>
+          <li><a href="#collections">Clocks & Timepieces</a></li>
+          <li><a href="#collections">Sculptures & Figurines</a></li>
+          <li><a href="#collections">Botanicals & Florals</a></li>
+          <li><a href="#collections">Ceramics & Vases</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 Luxe Décor. All rights reserved.</span>
+      <div class="footer-socials">
+        <a href="#" class="social-btn" aria-label="Instagram">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="Facebook">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="#" class="social-btn" aria-label="TikTok">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.41a8.16 8.16 0 004.77 1.52V7.5a4.85 4.85 0 01-1-.81z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  // Mobile hamburger
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('navMenu');
+  hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('open');
+  });
+  function closeMenu() {
+    navMenu.classList.remove('open');
+  }
+
+  // Scroll reveal
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+  // Gallery lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lbImg    = document.getElementById('lb-img');
+  const lbClose  = document.getElementById('lb-close');
+
+  document.querySelectorAll('.g-item').forEach(item => {
+    item.addEventListener('click', () => {
+      lbImg.src = item.dataset.src;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+  }
+
+  lbClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+
+</body>
+</html>
